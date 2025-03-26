@@ -18,6 +18,7 @@
     "@strapi/plugin-cloud": "4.25.11",
     "@strapi/plugin-i18n": "4.25.11",
     "@strapi/plugin-users-permissions": "4.25.11",
+    "@strapi/provider-upload-cloudinary": "^5.11.3",
     "@strapi/strapi": "4.25.11",
     "cloudinary": "^2.6.0",
     "pg": "8.8.0",
