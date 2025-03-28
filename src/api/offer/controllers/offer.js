@@ -36,10 +36,16 @@ module.exports = createCoreController("api::offer.offer", ({ strapi }) => ({
     try {
       //  console.log(ctx.state.user);
       const requesterId = ctx.state.user.id;
-      //  console.log(typeof ctx.request.body.data);
-      const parsedBody = JSON.parse(ctx.request.body.data);
-      console.log(parsedBody);
+      console.log(ctx.request.body);
+      let parsedBody;
+      if (typeof ctx.request.body.data === "string") {
+        parsedBody = JSON.parse(ctx.request.body.data);
+      } else {
+        parsedBody = ctx.request.body.data;
+      }
+
       const ownerId = parsedBody.owner;
+
       if (requesterId !== ownerId) {
         ctx.response.status = 403;
         return { message: "you are not the owner" };
@@ -50,6 +56,7 @@ module.exports = createCoreController("api::offer.offer", ({ strapi }) => ({
       return "hello";
     } catch (error) {
       ctx.response.status = 500;
+      console.log(error);
       return { message: error.message };
     }
   },
